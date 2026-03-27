@@ -281,6 +281,10 @@
         from { transform: translate(-50%, -50%) scale(0.9); opacity: 0.4; }
         to   { transform: translate(-50%, -50%) scale(1.15); opacity: 0.8; }
     }
+    /* ── Feature Card Icon Glows ── */
+    .feat-icon-cyan    { filter: drop-shadow(0 0 8px rgba(0,230,230,0.55)); }
+    .feat-icon-magenta { filter: drop-shadow(0 0 8px rgba(255,81,250,0.55)); }
+    .feat-icon-lime    { filter: drop-shadow(0 0 8px rgba(186,253,0,0.45)); }
 </style>
 </head>
 <body class="bg-background text-on-surface font-body selection:bg-secondary selection:text-surface-dim overflow-x-hidden">
@@ -398,75 +402,76 @@
 </section>
 
 <!-- Technical Specs / Features -->
-<section id="features" class="snap-section py-10 px-8 lg:px-24 bg-surface-container-low/30">
-  <div class="max-w-7xl mx-auto">
-    <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
-      <div class="max-w-2xl">
-        <p class="font-body text-secondary text-xs mb-2 tracking-[0.4em] uppercase font-bold">// Engine Architecture</p>
-        <h2 class="font-headline text-4xl md:text-5xl font-black text-white tracking-tighter uppercase glitch-hover">ENGINEERED FOR SPEED</h2>
-      </div>
-      <p class="text-on-surface-variant max-w-sm font-body text-sm leading-relaxed">
-        Designed from the ground up to utilize every byte of your network bandwidth through modern concurrency patterns.
-      </p>
+<section id="features" class="snap-section py-24 px-8 lg:px-24 relative overflow-hidden bg-surface-container-low/30">
+  <!-- Ambient background glows -->
+  <div class="absolute top-1/2 left-1/4 -translate-y-1/2 w-[500px] h-[500px] rounded-full pointer-events-none" style="background: radial-gradient(circle, rgba(0,230,230,0.05) 0%, transparent 70%); filter: blur(40px);"></div>
+  <div class="absolute top-1/2 right-1/4 -translate-y-1/2 w-[400px] h-[400px] rounded-full pointer-events-none" style="background: radial-gradient(circle, rgba(255,81,250,0.05) 0%, transparent 70%); filter: blur(40px);"></div>
+
+  <div class="max-w-7xl mx-auto relative z-10 w-full h-full flex flex-col">
+    <div class="text-center mb-12">
+      <p class="font-body text-secondary text-sm mb-4 tracking-[0.4em] uppercase font-bold">// Engine Architecture</p>
+      <h2 class="font-headline text-5xl md:text-7xl font-black text-white tracking-tighter uppercase glitch-hover">ENGINEERED FOR SPEED</h2>
     </div>
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 flex-1">
       <!-- Multi-threaded -->
-      <div class="bg-[#120b29] p-7 rounded-2xl border border-white/5 card-shimmer group reveal-card" style="transition-delay: 0s;">
-        <div class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mb-5 border border-primary/20 group-hover:scale-110 transition-transform">
-          <span class="material-symbols-outlined text-primary text-2xl">speed</span>
+      <div class="bg-[#120b29] p-10 rounded-2xl border border-white/5 card-shimmer group reveal-card h-full flex flex-col" style="transition-delay: 0s;">
+        <div class="w-16 h-16 bg-primary/10 rounded-xl flex items-center justify-center mb-8 border border-primary/20 group-hover:scale-110 transition-transform">
+          <span class="material-symbols-outlined text-primary text-3xl feat-icon-cyan">speed</span>
         </div>
-        <p class="font-body text-primary text-xs mb-2 tracking-[0.3em] uppercase">// MULTI-THREADED_ENGINE</p>
-        <h3 class="font-headline text-xl font-bold mb-3 text-white uppercase tracking-tight">Multi-Threaded</h3>
-        <p class="text-on-surface-variant text-xs font-body leading-relaxed">Open up to 32 concurrent connections per file to saturate your pipes and maximize throughput.</p>
+        <p class="font-body text-primary/70 text-xs mb-3 tracking-[0.3em] uppercase">// MULTI-THREADED_ENGINE</p>
+        <h3 class="font-headline text-2xl font-bold mb-4 text-white uppercase tracking-tight">Multi-Threaded</h3>
+        <p class="text-on-surface-variant text-sm font-body leading-relaxed">Open up to 32 concurrent connections per file to saturate your pipes and maximize throughput.</p>
       </div>
       <!-- Multiple Mirrors -->
-      <div class="bg-[#120b29] p-7 rounded-2xl border border-white/5 card-shimmer group reveal-card" style="transition-delay: 0.1s;">
-        <div class="w-12 h-12 bg-secondary/10 rounded-xl flex items-center justify-center mb-5 border border-secondary/20 group-hover:scale-110 transition-transform">
-          <span class="material-symbols-outlined text-secondary text-2xl">hub</span>
+      <div class="bg-[#120b29] p-10 rounded-2xl border border-white/5 card-shimmer group reveal-card h-full flex flex-col" style="transition-delay: 0.1s;">
+        <div class="w-16 h-16 bg-secondary/10 rounded-xl flex items-center justify-center mb-8 border border-secondary/20 group-hover:scale-110 transition-transform">
+          <span class="material-symbols-outlined text-secondary text-3xl feat-icon-magenta">hub</span>
         </div>
-        <p class="font-body text-secondary text-xs mb-2 tracking-[0.3em] uppercase">// MIRROR_DISTRIBUTION</p>
-        <h3 class="font-headline text-xl font-bold mb-3 text-white uppercase tracking-tight">Multiple Mirrors</h3>
-        <p class="text-on-surface-variant text-xs font-body leading-relaxed">Distribute workers across all available mirrors simultaneously with automatic failover on any connection drop.</p>
+        <p class="font-body text-secondary/70 text-xs mb-3 tracking-[0.3em] uppercase">// MIRROR_DISTRIBUTION</p>
+        <h3 class="font-headline text-2xl font-bold mb-4 text-white uppercase tracking-tight">Multiple Mirrors</h3>
+        <p class="text-on-surface-variant text-sm font-body leading-relaxed">Distribute workers across all available mirrors simultaneously with automatic failover on any connection drop.</p>
       </div>
       <!-- Sequential Download -->
-      <div class="bg-[#120b29] p-7 rounded-2xl border border-white/5 card-shimmer group reveal-card" style="transition-delay: 0.2s;">
-        <div class="w-12 h-12 bg-tertiary/10 rounded-xl flex items-center justify-center mb-5 border border-tertiary/20 group-hover:scale-110 transition-transform">
-          <span class="material-symbols-outlined text-tertiary text-2xl">stream</span>
+      <div class="bg-[#120b29] p-10 rounded-2xl border border-white/5 card-shimmer group reveal-card h-full flex flex-col" style="transition-delay: 0.2s;">
+        <div class="w-16 h-16 bg-tertiary/10 rounded-xl flex items-center justify-center mb-8 border border-tertiary/20 group-hover:scale-110 transition-transform">
+          <span class="material-symbols-outlined text-tertiary text-3xl feat-icon-lime">stream</span>
         </div>
-        <p class="font-body text-tertiary text-xs mb-2 tracking-[0.3em] uppercase">// STREAMING_MODE</p>
-        <h3 class="font-headline text-xl font-bold mb-3 text-white uppercase tracking-tight">Sequential Download</h3>
-        <p class="text-on-surface-variant text-xs font-body leading-relaxed">Download files in strict order for media-first access. Preview videos and audio while the download is still in progress.</p>
+        <p class="font-body text-tertiary/70 text-xs mb-3 tracking-[0.3em] uppercase">// STREAMING_MODE</p>
+        <h3 class="font-headline text-2xl font-bold mb-4 text-white uppercase tracking-tight">Sequential Download</h3>
+        <p class="text-on-surface-variant text-sm font-body leading-relaxed">Download files in strict order for media-first access. Preview videos and audio while the download is still in progress.</p>
       </div>
       <!-- Headless Server -->
-      <div class="bg-[#120b29] p-7 rounded-2xl border border-white/5 card-shimmer group reveal-card" style="transition-delay: 0.3s;">
-        <div class="w-12 h-12 bg-primary-dim/10 rounded-xl flex items-center justify-center mb-5 border border-primary-dim/20 group-hover:scale-110 transition-transform">
-          <span class="material-symbols-outlined text-primary-dim text-2xl">terminal</span>
+      <div class="bg-[#120b29] p-10 rounded-2xl border border-white/5 card-shimmer group reveal-card h-full flex flex-col" style="transition-delay: 0.3s;">
+        <div class="w-16 h-16 bg-primary-dim/10 rounded-xl flex items-center justify-center mb-8 border border-primary-dim/20 group-hover:scale-110 transition-transform">
+          <span class="material-symbols-outlined text-primary-dim text-3xl feat-icon-cyan">terminal</span>
         </div>
-        <p class="font-body text-primary-dim text-xs mb-2 tracking-[0.3em] uppercase">// DAEMON_ARCHITECTURE</p>
-        <h3 class="font-headline text-xl font-bold mb-3 text-white uppercase tracking-tight">Headless Server</h3>
-        <p class="text-on-surface-variant text-xs font-body leading-relaxed">Run as a background daemon with a token-protected HTTP API. Perfect for servers, Raspberry Pis, and remote orchestration.</p>
+        <p class="font-body text-primary-dim/70 text-xs mb-3 tracking-[0.3em] uppercase">// DAEMON_ARCHITECTURE</p>
+        <h3 class="font-headline text-2xl font-bold mb-4 text-white uppercase tracking-tight">Headless Server</h3>
+        <p class="text-on-surface-variant text-sm font-body leading-relaxed">Run as a background daemon with a token-protected HTTP API. Perfect for servers, Raspberry Pis, and remote orchestration.</p>
       </div>
       <!-- Work Stealing -->
-      <div class="bg-[#120b29] p-7 rounded-2xl border border-white/5 card-shimmer group reveal-card" style="transition-delay: 0.4s;">
-        <div class="w-12 h-12 bg-secondary/10 rounded-xl flex items-center justify-center mb-5 border border-secondary/20 group-hover:scale-110 transition-transform">
-          <span class="material-symbols-outlined text-secondary text-2xl">psychology</span>
+      <div class="bg-[#120b29] p-10 rounded-2xl border border-white/5 card-shimmer group reveal-card h-full flex flex-col" style="transition-delay: 0.4s;">
+        <div class="w-16 h-16 bg-secondary/10 rounded-xl flex items-center justify-center mb-8 border border-secondary/20 group-hover:scale-110 transition-transform">
+          <span class="material-symbols-outlined text-secondary text-3xl feat-icon-magenta">psychology</span>
         </div>
-        <p class="font-body text-secondary text-xs mb-2 tracking-[0.3em] uppercase">// INTELLIGENT_SCHEDULING</p>
-        <h3 class="font-headline text-xl font-bold mb-3 text-white uppercase tracking-tight">Work Stealing</h3>
-        <p class="text-on-surface-variant text-xs font-body leading-relaxed">Fast idle workers steal chunks from slow workers. Health checks restart underperforming connections automatically.</p>
+        <p class="font-body text-secondary/70 text-xs mb-3 tracking-[0.3em] uppercase">// INTELLIGENT_SCHEDULING</p>
+        <h3 class="font-headline text-2xl font-bold mb-4 text-white uppercase tracking-tight">Work Stealing</h3>
+        <p class="text-on-surface-variant text-sm font-body leading-relaxed">Fast idle workers steal chunks from slow workers. Health checks restart underperforming connections automatically.</p>
       </div>
       <!-- Beautiful TUI -->
-      <div class="bg-[#120b29] p-7 rounded-2xl border border-white/5 card-shimmer group reveal-card" style="transition-delay: 0.5s;">
-        <div class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mb-5 border border-primary/20 group-hover:scale-110 transition-transform">
-          <span class="material-symbols-outlined text-primary text-2xl">palette</span>
+      <div class="bg-[#120b29] p-10 rounded-2xl border border-white/5 card-shimmer group reveal-card h-full flex flex-col" style="transition-delay: 0.5s;">
+        <div class="w-16 h-16 bg-primary/10 rounded-xl flex items-center justify-center mb-8 border border-primary/20 group-hover:scale-110 transition-transform">
+          <span class="material-symbols-outlined text-primary text-3xl feat-icon-cyan">palette</span>
         </div>
-        <p class="font-body text-primary text-xs mb-2 tracking-[0.3em] uppercase">// TERMINAL_UI</p>
-        <h3 class="font-headline text-xl font-bold mb-3 text-white uppercase tracking-tight">Beautiful TUI</h3>
-        <p class="text-on-surface-variant text-xs font-body leading-relaxed">Built with Bubble Tea &amp; Lip Gloss. Keyboard-driven workflow with live speed graphs, queued/active/done tabs and settings UI.</p>
+        <p class="font-body text-primary/70 text-xs mb-3 tracking-[0.3em] uppercase">// TERMINAL_UI</p>
+        <h3 class="font-headline text-2xl font-bold mb-4 text-white uppercase tracking-tight">Beautiful TUI</h3>
+        <p class="text-on-surface-variant text-sm font-body leading-relaxed">Built with Bubble Tea &amp; Lip Gloss. Keyboard-driven workflow with live speed graphs, queued/active/done tabs and settings UI.</p>
       </div>
     </div>
   </div>
 </section>
+
 
 <!-- Benchmarks Section -->
 <section id="benchmarks" class="snap-section py-24 px-8 lg:px-24 relative overflow-hidden">
