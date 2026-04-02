@@ -1,87 +1,108 @@
 <!DOCTYPE html>
 <html class="dark" lang="en">
+
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>404 — Page Not Found | Surge</title>
-<meta name="description" content="The page you're looking for doesn't exist."/>
-<link rel="icon" type="image/png" href="https://raw.githubusercontent.com/surge-downloader/surge/main/assets/logo.png"/>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700;900&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet"/>
-<style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  body {
-    background: #0a0518;
-    color: #ece1ff;
-    font-family: 'Fira Code', monospace;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-    text-align: center;
-    padding: 2rem;
-  }
-  .container { max-width: 600px; }
-  .code {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: clamp(6rem, 20vw, 10rem);
-    font-weight: 900;
-    line-height: 1;
-    color: #c1fffe;
-    text-shadow: 0 0 40px rgba(0,255,255,0.4);
-    letter-spacing: -0.05em;
-  }
-  .label {
-    font-family: 'Fira Code', monospace;
-    color: #ff51fa;
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 0.3em;
-    margin: 1.5rem 0;
-  }
-  h1 {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 2rem;
-    font-weight: 900;
-    color: #fff;
-    text-transform: uppercase;
-    letter-spacing: -0.02em;
-    margin-bottom: 1rem;
-  }
-  p {
-    color: #b1a6c8;
-    font-size: 0.875rem;
-    line-height: 1.8;
-    margin-bottom: 2.5rem;
-  }
-  a {
-    display: inline-block;
-    padding: 1rem 2.5rem;
-    background: #c1fffe;
-    color: #006767;
-    font-family: 'Space Grotesk', sans-serif;
-    font-weight: 900;
-    font-size: 0.875rem;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    text-decoration: none;
-    border-radius: 12px;
-    transition: box-shadow 0.2s, transform 0.2s;
-  }
-  a:hover {
-    box-shadow: 0 0 30px rgba(0, 255, 255, 0.4);
-    transform: translateY(-2px);
-  }
-</style>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>404 — Page Not Found | Surge</title>
+  <meta name="description" content="The page you're looking for doesn't exist." />
+  <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/surgedm/surge/main/assets/logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700;900&family=Fira+Code:wght@400;500&display=swap"
+    rel="stylesheet" />
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: #0a0518;
+      color: #ece1ff;
+      font-family: 'Fira Code', monospace;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      text-align: center;
+      padding: 2rem;
+    }
+
+    .container {
+      max-width: 600px;
+    }
+
+    .code {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(6rem, 20vw, 10rem);
+      font-weight: 900;
+      line-height: 1;
+      color: #c1fffe;
+      text-shadow: 0 0 40px rgba(0, 255, 255, 0.4);
+      letter-spacing: -0.05em;
+    }
+
+    .label {
+      font-family: 'Fira Code', monospace;
+      color: #ff51fa;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.3em;
+      margin: 1.5rem 0;
+    }
+
+    h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 2rem;
+      font-weight: 900;
+      color: #fff;
+      text-transform: uppercase;
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+    }
+
+    p {
+      color: #b1a6c8;
+      font-size: 0.875rem;
+      line-height: 1.8;
+      margin-bottom: 2.5rem;
+    }
+
+    a {
+      display: inline-block;
+      padding: 1rem 2.5rem;
+      background: #c1fffe;
+      color: #006767;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 900;
+      font-size: 0.875rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      text-decoration: none;
+      border-radius: 12px;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+
+    a:hover {
+      box-shadow: 0 0 30px rgba(0, 255, 255, 0.4);
+      transform: translateY(-2px);
+    }
+  </style>
 </head>
+
 <body>
   <div class="container">
     <div class="code">404</div>
     <p class="label">// ERROR: PAGE_NOT_FOUND</p>
     <h1>Signal Lost</h1>
-    <p>The page you're looking for doesn't exist or has been moved.<br/>Let's get you back to the terminal.</p>
+    <p>The page you're looking for doesn't exist or has been moved.<br />Let's get you back to the terminal.</p>
     <a href="/">RETURN_HOME</a>
   </div>
 </body>
+
 </html>
