@@ -424,6 +424,7 @@
     .carousel-viewport {
       overflow: hidden;
       position: relative;
+      cursor: zoom-in;
     }
 
     .carousel-track {
@@ -445,6 +446,67 @@
     .ui-indicator.active {
       background-color: #00ffff;
       transform: scale(1.2);
+    }
+
+    .media-lightbox {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      background: rgba(0, 0, 0, 0.88);
+      backdrop-filter: blur(10px);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+      z-index: 120;
+    }
+
+    .media-lightbox.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .media-lightbox-content {
+      position: relative;
+      max-width: min(92vw, 1400px);
+      max-height: 90vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .media-lightbox-media {
+      display: block;
+      max-width: 100%;
+      max-height: 90vh;
+      border-radius: 1rem;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.55);
+      background: #000;
+    }
+
+    .media-lightbox-close {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      width: 2.75rem;
+      height: 2.75rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      background: rgba(255, 255, 255, 0.08);
+      color: #fff;
+      transition: background 0.2s ease, border-color 0.2s ease;
+      z-index: 1;
+    }
+
+    .media-lightbox-close:hover {
+      background: rgba(255, 255, 255, 0.14);
+      border-color: rgba(255, 255, 255, 0.3);
     }
   </style>
 </head>
@@ -564,6 +626,7 @@
                   src="https://raw.githubusercontent.com/surgedm/surge/main/assets/settings.png" />
               </div>
             </div>
+            <p class="text-center text-xs uppercase tracking-[0.24em] text-white/45 font-headline">Click to expand</p>
             <div class="flex justify-center gap-3 mt-2 carousel-indicators">
               <button class="w-2.5 h-2.5 rounded-full bg-white/20 hover:bg-white/40 outline-none ui-indicator active"
                 data-slide="0" aria-label="Go to slide 1"></button>
@@ -1073,6 +1136,15 @@
       </div>
     </div>
   </footer>
+  <div id="media-lightbox" class="media-lightbox" aria-hidden="true">
+    <div class="media-lightbox-content">
+      <button id="media-lightbox-close" class="media-lightbox-close" type="button" aria-label="Close expanded media">
+        <span class="material-symbols-outlined text-[20px]">close</span>
+      </button>
+      <img id="media-lightbox-image" class="media-lightbox-media" alt="" src="" />
+    </div>
+  </div>
+
   <script>
       (function () {
         // ── GitHub Stars ──
@@ -1189,6 +1261,10 @@
         const track = document.querySelector('.carousel-track');
         const slides = document.querySelectorAll('.carousel-slide');
         const indicators = document.querySelectorAll('.ui-indicator');
+        const viewport = document.querySelector('.carousel-viewport');
+        const lightbox = document.getElementById('media-lightbox');
+        const lightboxImage = document.getElementById('media-lightbox-image');
+        const lightboxClose = document.getElementById('media-lightbox-close');
         let currentSlide = 0;
         let carouselInterval;
 
@@ -1208,11 +1284,35 @@
         }
 
         function startCarousel() {
+          if (lightbox?.classList.contains('open')) return;
+          clearInterval(carouselInterval);
           carouselInterval = setInterval(nextSlide, 5000);
         }
 
         function stopCarousel() {
           clearInterval(carouselInterval);
+        }
+
+        function openLightbox() {
+          const activeSlide = slides[currentSlide];
+          if (!lightbox || !lightboxImage || !activeSlide) return;
+          lightboxImage.src = activeSlide.src;
+          lightboxImage.alt = activeSlide.alt;
+          lightbox.classList.add('open');
+          lightbox.setAttribute('aria-hidden', 'false');
+          document.body.classList.add('overflow-hidden');
+          stopCarousel();
+        }
+
+        function closeLightbox() {
+          if (!lightbox || !lightboxImage || !lightbox.classList.contains('open')) return;
+          lightbox.classList.remove('open');
+          lightbox.setAttribute('aria-hidden', 'true');
+          lightboxImage.src = '';
+          lightboxImage.alt = '';
+          document.body.classList.remove('overflow-hidden');
+          stopCarousel();
+          startCarousel();
         }
 
         if (track && slides.length > 0) {
@@ -1225,11 +1325,22 @@
           });
 
           // Pause carousel on hover
-          const viewport = document.querySelector('.carousel-viewport');
           if (viewport) {
             viewport.addEventListener('mouseenter', stopCarousel);
             viewport.addEventListener('mouseleave', startCarousel);
+            viewport.addEventListener('click', openLightbox);
           }
+
+          if (lightbox && lightboxClose) {
+            lightboxClose.addEventListener('click', closeLightbox);
+            lightbox.addEventListener('click', (event) => {
+              if (event.target === lightbox) closeLightbox();
+            });
+          }
+
+          document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape') closeLightbox();
+          });
 
           startCarousel();
         }
